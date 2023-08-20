@@ -6,6 +6,7 @@ import 'package:todo_app/Core/Service/login_service.dart';
 import 'package:todo_app/View/home_page.dart';
 import 'package:todo_app/View/login_page.dart';
 
+import '../Consts/consts.dart';
 import '../Core/Models/user_model.dart';
 import '../Core/Service/shared_pref.dart';
 
@@ -25,11 +26,11 @@ class SplashScreen extends StatelessWidget {
         splashIconSize: 300,
         backgroundColor: Colors.blue.shade50,
         screenFunction: () async {
-          var uid= Prefs.getStringValue('uid')??'';
+          var uid= Prefs.getStringValue(userIDPrefs)??'';
           var loginState = Prefs.getBooleanValue('loginState') ?? false;
           await delay();
           if (loginState) {
-            var user =await getUserDData(uid);
+            var user = await getUserDData(uid);
             return MyHomePage( user);
           } else {
             return LogIn_Page();
@@ -45,7 +46,7 @@ class SplashScreen extends StatelessWidget {
 
     Future<UserModel> getUserDData(String uid) async {
 
-      return await getUser(uid);
+      return await LogInService().getUser(uid);
     }
 }
 

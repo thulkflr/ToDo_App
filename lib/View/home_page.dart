@@ -458,58 +458,65 @@ class MyHomePage extends ConsumerWidget {
                   SizedBox(
                     height: 20,
                   ),
-
-                  FutureBuilder<Widget>(
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (indexCo.value!.isEmpty) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 60.0),
-                          child: Center(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 65,
-                                ),
-                                Image.asset(
-                                  'assets/sadList.png',
-                                  scale: 2,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  'Add Task Todo',
-                                  style: TextStyle(
-                                      color: Colors.blue.shade200,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25),
-                                )
-                              ],
+                  if (indexCo.value != null)
+                    FutureBuilder<Widget>(
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (indexCo.value != null &&
+                            indexCo.value!.isEmpty) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 60.0),
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 65,
+                                  ),
+                                  Image.asset(
+                                    'assets/sadList.png',
+                                    scale: 2,
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    'Add Task Todo',
+                                    style: TextStyle(
+                                        color: Colors.blue.shade200,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
+                          );
+                        }
+                        if (indexCo.value!.isNotEmpty) {
+                          return ListView.builder(
+                              physics: ScrollPhysics(),
+                              itemCount: indexCo.value?.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                {
+                                  print('asdasdas ${indexCo.value?.length}');
+                                  return Center(
+                                      child: ToDo_Card_Widget(
+                                    getIndex: index,
+                                  ));
+                                }
+                              });
+                        }
+                        return Center(
+                          child: Text('No Tasks'),
                         );
-                      }
-                      return ListView.builder(
-                          physics: ScrollPhysics(),
-                          itemCount: indexCo.value?.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            {
-                              print(indexCo.value?.length);
-                              return Center(
-                                  child: ToDo_Card_Widget(
-                                getIndex: index,
-                              ));
-                            }
-                          });
-                    },
-                  ),
+                      },
+                    ),
                 ],
               ),
             ),
@@ -566,8 +573,7 @@ void onSelected(context, int item) {
                         Navigator.pop(context);
                         //   print(auth.currentUser);
 
-                        await FirebaseAuth.instance.signOut();
-                        Prefs.removeDATA('uid');
+                        LogInService().logout();
 
                         Navigator.pushReplacement(
                             context,
@@ -581,5 +587,3 @@ void onSelected(context, int item) {
       break;
   }
 }
-
-

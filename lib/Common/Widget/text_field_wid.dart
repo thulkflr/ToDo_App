@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TextField_Widget extends StatefulWidget {
+class TextField_Widget extends StatelessWidget {
   const TextField_Widget(
       {super.key,
       required this.hint_text,
@@ -12,15 +14,8 @@ class TextField_Widget extends StatefulWidget {
   final int max_lines;
   final TextEditingController textEditingController;
 
-
-  @override
-  State<TextField_Widget> createState() => _TextField_WidgetState();
-}
-
-class _TextField_WidgetState extends State<TextField_Widget> {
   @override
   Widget build(BuildContext context) {
-// ref.read(radioProvider.notifier).update((state) => 1
     return Container(
         padding: EdgeInsets.symmetric(
           horizontal: 20,
@@ -29,12 +24,11 @@ class _TextField_WidgetState extends State<TextField_Widget> {
             color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(8)),
         child: TextField(
-          onSubmitted: (String string) {
-            setState(() {
-
-            });
-          },
-          controller: widget.textEditingController,
+          controller: textEditingController,
+          // onSubmitted: (value){
+          //   log('askjdaklsd : $value');
+          //   textEditingController.text = value;
+          // },
           decoration: InputDecoration(
             contentPadding: EdgeInsets.zero,
             suffix: IconButton(
@@ -43,14 +37,14 @@ class _TextField_WidgetState extends State<TextField_Widget> {
                 color: Colors.red,
               ),
               onPressed: () {
-                widget.textEditingController.clear();
+                 textEditingController.clear();
               },
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            hintText: widget.hint_text,
+            hintText: hint_text,
           ),
-          maxLines: widget.max_lines,
+          maxLines: max_lines,
         ));
   }
 }

@@ -7,7 +7,8 @@ class UserModel {
   String? email;
   String? photoUrl;
   bool? loginState;
-  UserModel(this.uid, this.displayName, this.email, this.photoUrl,this.loginState);
+  bool? state;
+  UserModel(this.uid, this.displayName, this.email, this.photoUrl,this.loginState,this.state);
 
   UserModel.name();
 
@@ -17,6 +18,7 @@ class UserModel {
     photoUrl = json['photoUrl'];
     email = json['email'];
     loginState = json['loginState'];
+    state = json['state'];
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +28,7 @@ class UserModel {
     data['photoUrl'] = photoUrl;
     data['email'] = email;
     data['loginState'] = loginState;
+    data['state'] = state;
 
     return data;
   }

@@ -74,11 +74,10 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:todo_app/Consts/consts.dart';
+import 'package:todo_app/Core/Service/shared_pref.dart';
 
 import '../Models/todo_model.dart';
-
-
-
 
 class Todo_Service {
   int statusCode = 0;
@@ -132,10 +131,14 @@ class Todo_Service {
       log('error: $error');
     }
   }
+
   Future<List<TODO_Model>> getTasks() async {
     try {
-      QuerySnapshot query =
-      await collection.collection(collectionName).get().catchError((err) {
+      QuerySnapshot query = await collection
+          .collection(collectionName)
+          .where('userId', isEqualTo: Prefs.getStringValue(userIDPrefs))
+          .get()
+          .catchError((err) {
         handleAuthErrors(err);
       });
 
@@ -156,6 +159,7 @@ class Todo_Service {
       return [];
     }
   }
+
   void handleAuthErrors(ArgumentError error) {
     String errorCode = error.message;
     switch (errorCode) {

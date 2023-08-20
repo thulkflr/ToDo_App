@@ -43,8 +43,8 @@ class LogIn_Page extends StatelessWidget {
                 side: BorderSide(color: Colors.blue.shade50),
               ),
               onPressed: () async {
-              var result=   await signInWithGoogle(context);
-                var userData =    await  getUserData(result);
+                var result=   await LogInService().signInWithGoogle(context);
+                var userData =    await  LogInService().getUserData(result);
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

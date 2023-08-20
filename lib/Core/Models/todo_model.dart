@@ -8,6 +8,7 @@ class TODO_Model {
    String? date;
    String? time;
    bool? status;
+   String? userId;
 
   TODO_Model.name();
 
@@ -18,6 +19,7 @@ class TODO_Model {
     required this.category,
     required this.date,
     required this.time,
+    required this.userId,
     required this.status,
   });
 
@@ -30,6 +32,7 @@ class TODO_Model {
       'category': category,
       'date': date,
       'time': time,
+      'userId': userId,
       'status': status
     };
   }
@@ -43,6 +46,7 @@ class TODO_Model {
         category: map['category'] as String,
         date: map['date'] as String,
         time: map['time'] as String,
+        userId: map['userId'] as String,
         status: map['status'] as bool);
   }
 
@@ -55,6 +59,7 @@ class TODO_Model {
         category: documentSnapShot['category'],
         date: documentSnapShot['date'],
         time: documentSnapShot['time'],
+        userId: documentSnapShot['userId'],
         status: documentSnapShot['status']);
   }
 }

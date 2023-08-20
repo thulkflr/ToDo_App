@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/Common/Widget/radio_wid.dart';
+import 'package:todo_app/Consts/consts.dart';
+import 'package:todo_app/Core/Service/shared_pref.dart';
 
 
 import '../Common/Widget/date_time_wid.dart';
@@ -76,7 +78,6 @@ class AddNewTask_MOdel extends ConsumerWidget {
               hint_text: 'Add Descriptions',
               max_lines: 5,
               textEditingController: descriptionController,
-
             ),
             SizedBox(
               height: 12,
@@ -210,6 +211,7 @@ class AddNewTask_MOdel extends ConsumerWidget {
                         category: cat,
                         date: dateValue,
                         time: timeValue,
+                        userId: Prefs.getStringValue(userIDPrefs),
                         status: false));
 
                     print('AAAAAAAAAAAADDDDDDDDDDDDDEEEEEEEEEEEDDDDDDDDDDD');
