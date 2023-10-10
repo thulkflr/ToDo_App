@@ -515,7 +515,7 @@ class MyHomePage extends ConsumerWidget {
                         return Center(
                           child: Text('No Tasks'),
                         );
-                      },
+                      }, future: null,
                     ),
                 ],
               ),
