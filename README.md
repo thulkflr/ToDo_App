@@ -19,7 +19,7 @@ This project is a mobile application developed using *Flutter* that helps you st
 
 1. Clone this repository:
     bash
-    git clone https://github.com/thulkflr/Todo-app.git
+    git clone https://github.com/your-username/Todo-app.git
     
 
 2. Install the required dependencies:
