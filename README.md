@@ -62,7 +62,8 @@ dependencies:
 ```
 ## 📄 Presentation
 You can view or download the PDF presentation for this project here: 
-[Project Presentation]([TODO app.pdf](https://github.com/user-attachments/files/19719466/TODO.app.pdf))
+[Project Presentation] [TODO view.pptx](https://github.com/user-attachments/files/19720353/TODO.view.pptx).
+
 
 ## 💬 Contributing
 Contributions are welcome! Please feel free to fork this project, submit issues, or create pull requests.
